@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+//登录参数
+message LoginRequestParam {
+  // 用户名
+  string username = 1;
+  // 密码
+  string password = 2;
+}
+
+//注册参数
+message RegisterRequestParam {
+  // 用户名
+  string username = 1;
+  // 密码
+  string password = 2;
+}
+
+
+//令牌信息
+message TokenInfo {
+  string token=1;
+  // 用户ID
+  int64 userId=2;
+  // 用户名
+  string username=3;
+}
+
+
+//账户信息
+message AccountInfo {
+  // 账户ID
+  int64 id=1;
+  // 用户名
+  string username=2;
+  // 邮箱
+  string email=3;
+  // 手机
+  string mobile=4;
+}
+
+
+
