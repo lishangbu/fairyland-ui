@@ -23,7 +23,7 @@ module.exports = {
     // Base ESLint recommended rules
     // 'eslint:recommended',
 
-    // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#usage
+    // https://typescript-eslint.io/getting-started/legacy-eslint-setup
     // ESLint typescript rules
     'plugin:@typescript-eslint/recommended',
 
@@ -85,11 +85,12 @@ module.exports = {
 
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
     "@typescript-eslint/no-unused-vars": ["off"],
     "@typescript-eslint/no-this-alias": [
       "error",
       {
-         "allowedNames": ["self"] // Allow `const self = this`; `[]` by default
+        "allowedNames": ["self"] // Allow `const self = this`; `[]` by default
       }
     ]
   }

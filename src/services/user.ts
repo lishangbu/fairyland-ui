@@ -1,11 +1,10 @@
-import { AccountInfo, IRegisterRequestParam, LoginRequestParam } from 'src/proto/type';
-import { CommandModule } from 'src/constants/commandModule.ts';
-import { AccountCommand } from 'src/constants/accountCommand.ts';
-import { useProtobufRequest } from 'src/hooks/useRequest.ts';
+import type { IRegisterRequestParam } from 'src/generated';
+import { AccountInfo, RegisterRequestParam } from 'src/generated';
+import { useProtobufRequest } from 'src/hooks/useProtobufRequest';
 
-const MAIN_CMD = CommandModule.user as const;
+const USER = 1;
 
-const USER = AccountCommand.user;
+const USER_REGISTER = 1;
 
 /**
  * 发起用户注册请求。
@@ -14,7 +13,7 @@ const USER = AccountCommand.user;
  * @returns {Promise<AccountInfo>} 返回一个 Promise，解析为注册成功后获得的用户账户信息。
  */
 export function register(registerRequestParam: IRegisterRequestParam) {
-  return useProtobufRequest('注册', MAIN_CMD, USER.Register,
-    LoginRequestParam.create(registerRequestParam), AccountInfo.create());
+  return useProtobufRequest('注册', USER, USER_REGISTER,
+    RegisterRequestParam.create(registerRequestParam), AccountInfo.create());
 }
 

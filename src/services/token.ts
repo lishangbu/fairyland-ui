@@ -1,11 +1,12 @@
-import { ILoginRequestParam, LoginRequestParam, TokenInfo } from 'src/proto/type';
-import { CommandModule } from 'src/constants/commandModule.ts';
-import { AccountCommand } from 'src/constants/accountCommand.ts';
-import { useProtobufRequest } from 'src/hooks/useRequest.ts';
+import type { ILoginRequestParam } from 'src/generated';
+import { LoginRequestParam, TokenInfo } from 'src/generated';
+import { useProtobufRequest } from 'src/hooks/useProtobufRequest';
 
-const MAIN_CMD = CommandModule.token as const;
+const TOKEN = 2;
 
-const TOKEN = AccountCommand.token;
+const TOKEN_LOGIN = 1;
+const TOKEN_VALIDATE = 2;
+const TOKEN_LOGOUT = 3;
 
 
 /**
@@ -15,7 +16,7 @@ const TOKEN = AccountCommand.token;
  * @returns {Promise<TokenInfo>} 返回一个 Promise，解析为用户登录成功后获得的 Token 信息。
  */
 export function login(loginParam: ILoginRequestParam) {
-  return useProtobufRequest('登录', MAIN_CMD, TOKEN.Login,
+  return useProtobufRequest('登录', TOKEN, TOKEN_LOGIN,
     LoginRequestParam.create(loginParam), TokenInfo.create());
 }
 
@@ -27,5 +28,5 @@ export function login(loginParam: ILoginRequestParam) {
  * @returns {Promise<TokenInfo>} 返回一个 Promise，解析为用户登录成功后获得的 Token 信息。
  */
 export function logout() {
-  return useProtobufRequest('登出', MAIN_CMD, TOKEN.Logout);
+  return useProtobufRequest('登出', TOKEN, TOKEN_LOGOUT);
 }

@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
-import { login, logout as remoteLogout } from 'src/services/token.ts';
-import { ILoginRequestParam, ITokenInfo } from 'src/proto/type';
+import { login, logout as remoteLogout } from 'src/services/token';
+import type { ILoginRequestParam, ITokenInfo } from 'src/generated';
+import { BoolValue } from 'src/generated';
+import { useBroadcastListener } from 'src/hooks/useBroadcastListener';
 
 // 定义状态的类型
 interface State {
-  tokenInfo?: ITokenInfo;
+  tokenInfo?: ITokenInfo | undefined;
   isLoggedIn: boolean;
 }
 
@@ -58,6 +60,20 @@ export const useTokenStore = defineStore('token', {
     },
     setLoggedIn(isLoggedIn: boolean) {
       this.isLoggedIn = isLoggedIn;
+    },
+    registerValidateTokenListener() {
+      useBroadcastListener(
+        '验证令牌',
+        2,
+        2,
+        BoolValue.create()
+      ).then((resultData: BoolValue) => {
+        this.setLoggedIn(resultData.value);
+        if (!resultData.value) {
+          this.$reset();
+        }
+        console.log('result:', resultData);
+      });
     }
   }
 });

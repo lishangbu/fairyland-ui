@@ -11,12 +11,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Meta, Todo } from 'components/models';
+import type { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
-
-defineOptions({
-  name: 'IndexPage'
-});
 
 const todos = ref<Todo[]>([
   {
@@ -44,5 +40,4 @@ const todos = ref<Todo[]>([
 const meta = ref<Meta>({
   totalCount: 1200
 });
-
 </script>

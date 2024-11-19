@@ -1,7 +1,11 @@
-/* eslint-disable */
-export const printANSI = () => {
+import { defineBoot } from '#q-app/wrappers'
+
+// "async" is optional;
+// more info on params: https://v2.quasar.dev/quasar-cli/boot-files
+export default defineBoot(async (/* { app, router, ... } */) => {
+
   // ASCII - ANSI Shadow
-  let text = `
+  const text = `
 
    __      _            _                 _
   / _|    (_)          | |               | |
@@ -25,4 +29,4 @@ export const printANSI = () => {
     '%cThank you for supporting this game!',
     'color: #fff; font-size: 14px; font-weight: 300; text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;'
   )
-}
+})

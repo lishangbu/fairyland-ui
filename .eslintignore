@@ -5,4 +5,4 @@
 /node_modules
 .eslintrc.cjs
 /quasar.config.*.temporary.compiled*
-/src/proto
+/src/generated

@@ -4,10 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import Initializer from 'src/utils/bootstrap.ts';
+import Initializer from 'src/utils/bootstrap';
 
-defineOptions({
-  name: 'App'
-});
 onMounted(Initializer);
 </script>

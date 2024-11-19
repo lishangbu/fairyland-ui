@@ -1,8 +1,8 @@
-import { store } from 'quasar/wrappers';
-import { createPinia } from 'pinia';
-import { Router } from 'vue-router';
-
+import { defineStore } from '#q-app/wrappers'
+import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+
+import type { Router } from 'vue-router';
 
 /*
  * When adding new properties to stores, you should also
@@ -24,13 +24,13 @@ declare module 'pinia' {
  * with the Store instance.
  */
 
-export default store((/* { ssrContext } */) => {
-  const pinia = createPinia();
+export default defineStore((/* { ssrContext } */) => {
+  const pinia = createPinia()
 
   // You can add Pinia plugins here
   pinia.use(createPersistedState({
     storage: sessionStorage
   }));
 
-  return pinia;
-});
+  return pinia
+})

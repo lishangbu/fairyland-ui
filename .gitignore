@@ -32,9 +32,9 @@ yarn-error.log*
 # local .env files
 .env.local*
 
-#model files
-/src/proto/*.ts
-/src/proto/*.js
+#generated files
+/src/generated/*.js
+/src/generated/*.d.ts
 
 #lock files
 pnpm-lock.yaml

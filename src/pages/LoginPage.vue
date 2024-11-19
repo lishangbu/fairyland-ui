@@ -33,8 +33,8 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { useTokenStore } from 'stores/token.ts';
-import { register } from 'src/services/user.ts';
+import { useTokenStore } from 'stores/token';
+import { register } from 'src/services/user';
 
 const username = ref<string>('');
 const password = ref<string>('');
