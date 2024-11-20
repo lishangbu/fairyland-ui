@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
-import { login, logout as remoteLogout } from 'src/services/token';
+import { login as remoteLogin, logout as remoteLogout } from 'src/services/token';
 import type { ILoginRequestParam, ITokenInfo } from 'src/generated';
 import { BoolValue } from 'src/generated';
 import { useBroadcastListener } from 'src/hooks/useBroadcastListener';
+import {useProtobufRequest} from 'src/hooks/useProtobufRequest';
 
 // 定义状态的类型
 interface State {
@@ -23,9 +24,9 @@ export const useTokenStore = defineStore('token', {
   },
   actions: {
     // 根据用户名登录
-    loginByUsername(loginRequestParam: ILoginRequestParam) {
+    login(loginRequestParam: ILoginRequestParam) {
       return new Promise((resolve, reject) => {
-        login(loginRequestParam)
+        remoteLogin(loginRequestParam)
           .then((result) => {
             // 登录成功会返回token
             this.setToken(result);
@@ -41,7 +42,6 @@ export const useTokenStore = defineStore('token', {
       return new Promise((resolve, reject) => {
         remoteLogout()
           .then((result) => {
-            // 登录成功会返回token
             this.$reset();
             resolve(result);
           })
@@ -60,6 +60,9 @@ export const useTokenStore = defineStore('token', {
     },
     setLoggedIn(isLoggedIn: boolean) {
       this.isLoggedIn = isLoggedIn;
+    },
+    validateToken(){
+      useProtobufRequest('验证令牌',2,2)
     },
     registerValidateTokenListener() {
       useBroadcastListener(

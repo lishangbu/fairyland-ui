@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useWebsocketStore } from 'stores/websocket';
 //@ts-ignore
-import { ExternalMessage } from 'src/generated/type.d';
+import { ExternalMessage } from 'src/generated';
 
 /**
  * 发起ProtobufRequest参数风格的请求

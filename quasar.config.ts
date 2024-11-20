@@ -4,7 +4,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 
-import { defineConfig } from '#q-app/wrappers';
+import {defineConfig} from '#q-app/wrappers';
 
 
 export default defineConfig((/* ctx */) => {
@@ -17,6 +17,7 @@ export default defineConfig((/* ctx */) => {
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
       'bus',
+      'router-guard',
       'screen-log'
     ],
 
@@ -79,7 +80,7 @@ export default defineConfig((/* ctx */) => {
           eslint: {
             lintCommand: 'eslint "./**/*.{js,ts,mjs,cjs,vue}"'
           }
-        }, { server: false }]
+        }, {server: false}]
       ]
     },
 
